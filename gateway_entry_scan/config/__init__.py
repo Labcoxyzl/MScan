@@ -1,0 +1,1 @@
+from config.llm import OPENAI_API_KEY, OPENAI_BASE_URL

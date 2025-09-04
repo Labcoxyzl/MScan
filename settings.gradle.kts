@@ -1,0 +1,4 @@
+include(
+    ":", // root project
+    "docs",
+)

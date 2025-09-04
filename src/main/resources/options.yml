@@ -1,0 +1,21 @@
+optionsFile: null
+printHelp: false
+classPath:
+  - src/main/resources/javax.servlet-api-3.1.0.jar
+appClassPath:
+mainClass: null
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: false
+scope: APP
+nativeModel: true
+planFile: null
+analyses:
+  pta: taint-config:src/main/resources/taint-config.yml;only-app:true;implicit-entries:false;dump:false;time-limit:1200000;cs:4-call;advanced:pruning;plugins:[fdu.secsys.microservice.plugin.GatewaySourcePlugin,fdu.secsys.microservice.plugin.OpenFeignPlugin,pascal.taie.analysis.pta.plugin.taint.EnhanceTaintAnalysis]
+onlyGenPlan: false
+keepResult:
+  - $KEEP-ALL

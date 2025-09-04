@@ -1,0 +1,15 @@
+# macOS hidden file
+.DS_Store
+.gradle/
+.idea/
+bin/
+build/
+out/
+output/
+results/
+options-*.yml
+java-benchmarks/
+Config.java
+output*
+hs_err_pid*.log
+__pycache__

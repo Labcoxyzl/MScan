@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user_profile
+          uri: lb://user-service
+          predicates:
+            - Path=/user/profile/**
+        - id: internal_tools
+          uri: no://blackhole
+          predicates:
+            - Path=/internal/tools/**
+          filters:
+            - SetStatus=403
+        - id: public_docs
+          uri: lb://doc-service
+          predicates:
+            - Path=/docs/**
+        - id: manage_api
+          uri: lb://manage-service
+          predicates:
+            - Path=/manage/**
+          filters:
+            - IpWhitelist=192.168.0.0/16

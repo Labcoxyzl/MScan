@@ -1,0 +1,754 @@
+call-site-mode: true
+
+sources:
+  - { kind: call, method: "<javax.servlet.ServletRequest: java.lang.String getParameter(java.lang.String)>", index: -2 }
+  - { kind: call, method: "<javax.servlet.ServletRequest: java.lang.String[] getParameterValues(java.lang.String)>", index: -2 }
+  - { kind: call, method: "<javax.servlet.ServletRequest: java.util.Enumeration getParameterNames()>", index: -2 }
+  - { kind: call, method: "<javax.servlet.ServletRequest: java.util.Map getParameterMap()>", index: -2 }
+  - { kind: call, method: "<javax.servlet.ServletRequest: java.lang.String getContentType()>", index: -2 }
+  - { kind: call, method: "<javax.servlet.ServletRequest: java.lang.String getCharacterEncoding()>", index: -2 }
+  - { kind: call, method: "<javax.servlet.ServletRequest: javax.servlet.ServletInputStream getInputStream()>", index: -2 }
+  - { kind: call, method: "<javax.servlet.ServletRequest: java.io.BufferedReader getReader()>", index: -2 }
+  - { kind: call, method: "<javax.servlet.http.HttpServletRequest: java.lang.String getHeader(java.lang.String)>", index: -2 }
+  - { kind: call, method: "<javax.servlet.http.HttpServletRequest: java.lang.String getQueryString()>", index: -2 }
+  - { kind: call, method: "<javax.servlet.http.HttpServletRequest: java.lang.String getRequestURI()>", index: -2 }
+  - { kind: call, method: "<javax.servlet.http.HttpServletRequest: javax.servlet.http.Cookie[] getCookies()>", index: -2 }
+  - { kind: call, method: "<javax.servlet.http.HttpServletRequest: java.util.Enumeration getHeaders(java.lang.String)>", index: -2 }
+  - { kind: call, method: "<javax.servlet.http.HttpServletRequest: java.util.Enumeration getHeaderNames()>", index: -2 }
+
+enhance_sinks:
+  - {"method": "<java.net.URL: java.net.URLConnection openConnection()>", "index": -1, "vul_id": "SSRFVulnerability"}
+  - {"method": "<java.nio.file.Files: byte[] readAllBytes(java.nio.file.Path)>", "index": 0, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.nio.channels.FileChannel: int read(java.nio.ByteBuffer)>", "index": 0, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.nio.channels.FileChannel: long read(java.nio.ByteBuffer[],int,int)>", "index": 0, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.nio.channels.FileChannel: long read(java.nio.ByteBuffer[])>", "index": 0, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.nio.channels.FileChannel: int read(java.nio.ByteBuffer,long)>", "index": 0, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.FileInputStream: int read()>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.FileInputStream: int read(byte[])>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.FileInputStream: int read(byte[],int,int)>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.InputStreamReader: int read()>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.InputStreamReader: int read(char[])>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.InputStreamReader: int read(char[],int,int)>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.FileReader: int read()>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.FileReader: int read(char[])>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.FileReader: int read(char[],int,int)>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.BufferedReader: int read()>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.BufferedReader: int read(char[])>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.BufferedReader: int read(char[],int,int)>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.io.BufferedReader: java.lang.String readLine()>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.util.Scanner: java.lang.String next()>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.util.Scanner: java.lang.String next(java.lang.String)>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.util.Scanner: java.lang.String next(java.util.regex.Pattern)>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.util.Scanner: java.lang.String nextLine()>", "index": -1, "vul_id": "FileReadVulnerability"}
+  - {"method": "<java.nio.file.Files: java.nio.file.Path copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption[])>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: java.nio.file.Path copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption[])>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: long copy(java.io.InputStream,java.nio.file.Path,java.nio.file.CopyOption[])>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: long copy(java.io.InputStream,java.nio.file.Path,java.nio.file.CopyOption[])>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: long copy(java.nio.file.Path,java.io.OutputStream)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: long copy(java.nio.file.Path,java.io.OutputStream)>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,byte[],java.nio.file.OpenOption[])>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,byte[],java.nio.file.OpenOption[])>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,java.lang.Iterable,java.nio.charset.Charset,java.nio.file.OpenOption[])>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,java.lang.Iterable,java.nio.charset.Charset,java.nio.file.OpenOption[])>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,java.lang.Iterable,java.nio.file.OpenOption[])>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.file.Files: java.nio.file.Path write(java.nio.file.Path,java.lang.Iterable,java.nio.file.OpenOption[])>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.File: byte renameTo(java.io.File)>", "index": -1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.File: byte renameTo(java.io.File)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.OutputStream: void write(int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.OutputStream: void write(byte[])>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.OutputStream: void write(byte[],int,int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.OutputStreamWriter: void write(int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.OutputStreamWriter: void write(char[],int,int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.OutputStreamWriter: void write(java.lang.String,int,int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.OutputStreamWriter: void write(java.lang.String)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.FileWriter: void write(int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.FileWriter: void write(char[],int,int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.FileWriter: void write(java.lang.String,int,int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.FileWriter: void write(java.lang.String)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.BufferedWriter: void write(int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.BufferedWriter: void write(char[],int,int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.BufferedWriter: void write(char[])>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.BufferedWriter: void write(java.lang.String,int,int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.BufferedWriter: void write(java.lang.String)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.FileOutputStream: void write(int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.FileOutputStream: void write(byte[])>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.io.FileOutputStream: void write(byte[],int,int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.channels.FileChannel: int write(java.nio.ByteBuffer)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.channels.FileChannel: long write(java.nio.ByteBuffer[],int,int)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.channels.FileChannel: long write(java.nio.ByteBuffer[])>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<java.nio.channels.FileChannel: int write(java.nio.ByteBuffer,long)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<org.springframework.web.multipart.MultipartFile: void transferTo(java.nio.file.Path)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<org.springframework.web.multipart.MultipartFile: void transferTo(java.io.File)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<org.apache.velocity.app.Velocity: boolean evaluate(org.apache.velocity.context.Context,java.io.Writer,java.lang.String,java.lang.String)>", "index": 2, "vul_id": "VelocitySSTIVulnerability"}
+  - {"method": "<org.apache.velocity.app.Velocity: boolean evaluate(org.apache.velocity.context.Context,java.io.Writer,java.lang.String,java.io.Reader)>", "index": 2, "vul_id": "VelocitySSTIVulnerability"}
+  - {"method": "<java.net.URL: java.io.InputStream openStream()>", "index": -1, "vul_id": "SSRFVulnerability"}
+  - {"method": "<java.net.URL: java.net.URLConnection openStream(java.net.Proxy)>", "index": -1, "vul_id": "SSRFVulnerability"}
+  - {"method": "<java.net.URL: java.lang.Object getContent()>", "index": -1, "vul_id": "SSRFVulnerability"}
+  - {"method": "<java.net.URL: java.lang.Object getContent(java.lang.Class[])>", "index": -1, "vul_id": "SSRFVulnerability"}
+  - {"method": "<java.net.URLConnection: java.io.InputStream getInputStream()>", "index": -1, "vul_id": "SSRFVulnerability"}
+  - {"method": "<java.net.URLConnection: java.lang.Object getContent()>", "index": -1, "vul_id": "SSRFVulnerability"}
+  - {"method": "<java.net.URLConnection: java.lang.Object getContent(java.lang.Class[])>", "index": -1, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object getForObject(java.lang.String,java.lang.Class,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object getForObject(java.lang.String,java.lang.Class,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object getForObject(java.net.URI,java.lang.Class)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity getForEntity(java.lang.String,java.lang.Class,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity getForEntity(java.lang.String,java.lang.Class,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity getForEntity(java.net.URI,java.lang.Class)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.HttpHeaders headForHeaders(java.lang.String,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.HttpHeaders headForHeaders(java.lang.String,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.HttpHeaders headForHeaders(java.net.URI)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.net.URI postForLocation(java.lang.String,java.lang.Object,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.net.URI postForLocation(java.lang.String,java.lang.Object,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.net.URI postForLocation(java.net.URI,java.lang.Object)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object postForObject(java.lang.String,java.lang.Object,java.lang.Class,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object postForObject(java.lang.String,java.lang.Object,java.lang.Class,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object postForObject(java.net.URI,java.lang.Object,java.lang.Class)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity postForEntity(java.lang.String,java.lang.Object,java.lang.Class,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity postForEntity(java.lang.String,java.lang.Object,java.lang.Class,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity postForEntity(java.net.URI,java.lang.Object,java.lang.Class)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: void put(java.lang.String,java.lang.Object,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: void put(java.lang.String,java.lang.Object,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: void put(java.net.URI,java.lang.Object)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object patchForObject(java.lang.String,java.lang.Object,java.lang.Class,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object patchForObject(java.lang.String,java.lang.Object,java.lang.Class,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object patchForObject(java.net.URI,java.lang.Object,java.lang.Class)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: void delete(java.lang.String,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: void delete(java.lang.String,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: void delete(java.net.URI)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.util.Set optionsForAllow(java.lang.String,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.util.Set optionsForAllow(java.lang.String,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.util.Set optionsForAllow(java.net.URI)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity exchange(java.lang.String,org.springframework.http.HttpMethod,org.springframework.http.HttpEntity,java.lang.Class,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity exchange(java.lang.String,org.springframework.http.HttpMethod,org.springframework.http.HttpEntity,java.lang.Class,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity exchange(java.net.URI,org.springframework.http.HttpMethod,org.springframework.http.HttpEntity,java.lang.Class)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity exchange(java.lang.String,org.springframework.http.HttpMethod,org.springframework.http.HttpEntity,org.springframework.core.ParameterizedTypeReference,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity exchange(java.lang.String,org.springframework.http.HttpMethod,org.springframework.http.HttpEntity,org.springframework.core.ParameterizedTypeReference,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity exchange(java.net.URI,org.springframework.http.HttpMethod,org.springframework.http.HttpEntity,org.springframework.core.ParameterizedTypeReference)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity exchange(org.springframework.http.RequestEntity,java.lang.Class)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: org.springframework.http.ResponseEntity exchange(org.springframework.http.RequestEntity,org.springframework.core.ParameterizedTypeReference)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object exchange(java.lang.String,org.springframework.http.HttpMethod,org.springframework.web.client.RequestCallback,org.springframework.web.client.ResponseExtractor,java.lang.Object[])>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object exchange(java.lang.String,org.springframework.http.HttpMethod,org.springframework.web.client.RequestCallback,org.springframework.web.client.ResponseExtractor,java.util.Map)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.springframework.web.client.RestTemplate: java.lang.Object exchange(java.net.URI,org.springframework.http.HttpMethod,org.springframework.web.client.RequestCallback,org.springframework.web.client.ResponseExtractor)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<okhttp3.Request$Builder: okhttp3.Request$Builder url(java.lang.String)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<javax.imageio.ImageIO: java.awt.image.BufferedImage read(java.net.URL)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.apache.commons.httpclient.HttpClient: int executeMethod(org.apache.commons.httpclient.HttpMethod)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.apache.commons.httpclient.HttpClient: int executeMethod(org.apache.commons.httpclient.HostConfiguration,org.apache.commons.httpclient.HttpMethod)>", "index": 1, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.apache.commons.httpclient.HttpClient: int executeMethod(org.apache.commons.httpclient.HostConfiguration,org.apache.commons.httpclient.HttpMethod,org.apache.commons.httpclient.HttpState)>", "index": 1, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.dom4j.io.SAXReader: org.dom4j.Document read(java.io.File)>", "index": 0, "vul_id": "JdomSAXReaderVulnerability"}
+  - {"method": "<org.dom4j.io.SAXReader: org.dom4j.Document read(java.net.URL)>", "index": 0, "vul_id": "JdomSAXReaderVulnerability"}
+  - {"method": "<org.dom4j.io.SAXReader: org.dom4j.Document read(java.lang.String)>", "index": 0, "vul_id": "JdomSAXReaderVulnerability"}
+  - {"method": "<org.dom4j.io.SAXReader: org.dom4j.Document read(java.io.InputStream)>", "index": 0, "vul_id": "JdomSAXReaderVulnerability"}
+  - {"method": "<org.dom4j.io.SAXReader: org.dom4j.Document read(java.io.Reader)>", "index": 0, "vul_id": "JdomSAXReaderVulnerability"}
+  - {"method": "<org.dom4j.io.SAXReader: org.dom4j.Document read(java.io.InputStream,java.lang.String)>", "index": 0, "vul_id": "JdomSAXReaderVulnerability"}
+  - {"method": "<org.dom4j.io.SAXReader: org.dom4j.Document read(java.io.Reader,java.lang.String)>", "index": 0, "vul_id": "JdomSAXReaderVulnerability"}
+  - {"method": "<org.dom4j.io.SAXReader: org.dom4j.Document read(org.xml.sax.InputSource)>", "index": 0, "vul_id": "JdomSAXReaderVulnerability"}
+  - {"method": "<javax.xml.transform.sax.SAXTransformerFactory: org.xml.sax.XMLFilter newXMLFilter(javax.xml.transform.Source)>", "index": 0, "vul_id": "SAXTransformerFactoryVulnerability"}
+  - {"method": "<javax.xml.transform.sax.SAXTransformerFactory: org.xml.sax.XMLFilter newXMLFilter(javax.xml.transform.Templates)>", "index": 0, "vul_id": "SAXTransformerFactoryVulnerability"}
+  - {"method": "<groovy.lang.GroovyShell: java.lang.Object evaluate(groovy.lang.GroovyCodeSource)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyShell: java.lang.Object evaluate(java.lang.String)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyShell: java.lang.Object evaluate(java.lang.String,java.lang.String)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyShell: java.lang.Object evaluate(java.lang.String,java.lang.String,java.lang.String)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyShell: java.lang.Object evaluate(java.io.File)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyShell: java.lang.Object evaluate(java.net.URI)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyShell: java.lang.Object evaluate(java.io.Reader)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyShell: java.lang.Object evaluate(java.io.Reader,java.lang.String)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyClassLoader: java.lang.Class parseClass(java.io.File)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyClassLoader: java.lang.Class parseClass(java.lang.String,java.lang.String)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyClassLoader: java.lang.Class parseClass(java.lang.String)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyClassLoader: java.lang.Class parseClass(java.io.Reader,java.lang.String)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyClassLoader: java.lang.Class parseClass(java.io.InputStream,java.lang.String)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyClassLoader: java.lang.Class parseClass(groovy.lang.GroovyCodeSource)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.lang.GroovyClassLoader: java.lang.Class parseClass(groovy.lang.GroovyCodeSource,boolean)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.util.GroovyScriptEngine: void <init>(java.net.URL[],java.lang.ClassLoader,groovy.util.ResourceConnector)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.util.GroovyScriptEngine: void <init>(java.net.URL[])>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.util.GroovyScriptEngine: void <init>(java.net.URL[],java.lang.ClassLoader)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.util.GroovyScriptEngine: void <init>(java.lang.String[])>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.util.GroovyScriptEngine: void <init>(java.lang.String[],java.lang.ClassLoader)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.util.GroovyScriptEngine: void <init>(java.lang.String)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.util.GroovyScriptEngine: void <init>(java.lang.String,java.lang.ClassLoader)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.util.GroovyScriptEngine: void <init>(groovy.util.ResourceConnector)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<groovy.util.GroovyScriptEngine: void <init>(groovy.util.ResourceConnector,java.lang.ClassLoader)>", "index": 0, "vul_id": "GroovyVulnerability"}
+  - {"method": "<java.sql.Statement: java.sql.ResultSet executeQuery(java.lang.String)>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: int executeUpdate(java.lang.String)>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: int executeUpdate(java.lang.String,int)>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: int executeUpdate(java.lang.String,int[])>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: int executeUpdate(java.lang.String,java.lang.String[])>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: boolean execute(java.lang.String)>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: boolean execute(java.lang.String,int)>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: boolean execute(java.lang.String,int[])>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: boolean execute(java.lang.String,java.lang.String[])>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: long executeLargeUpdate(java.lang.String)>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: long executeLargeUpdate(java.lang.String,int)>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: long executeLargeUpdate(java.lang.String,int[])>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: long executeLargeUpdate(java.lang.String,java.lang.String[])>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: org.hibernate.query.NativeQuery executeLargeUpdate(java.lang.String)>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<java.sql.Statement: void addBatch(java.lang.String)>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: void execute(java.lang.String)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object execute(java.lang.String,org.springframework.jdbc.core.PreparedStatementCallback)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object execute(java.lang.String,org.springframework.jdbc.core.CallableStatementCallback)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object query(java.lang.String,org.springframework.jdbc.core.ResultSetExtractor)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: void query(java.lang.String,org.springframework.jdbc.core.RowCallbackHandler)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List query(java.lang.String,org.springframework.jdbc.core.RowMapper)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object query(java.lang.String,org.springframework.jdbc.core.PreparedStatementSetter,org.springframework.jdbc.core.ResultSetExtractor)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object query(java.lang.String,java.lang.Object[],int[],org.springframework.jdbc.core.ResultSetExtractor)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object query(java.lang.String,java.lang.Object[],org.springframework.jdbc.core.ResultSetExtractor)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object query(java.lang.String,org.springframework.jdbc.core.ResultSetExtractor,java.lang.Object[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: void query(java.lang.String,org.springframework.jdbc.core.PreparedStatementSetter,org.springframework.jdbc.core.RowCallbackHandler)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: void query(java.lang.String,java.lang.Object[],int[],org.springframework.jdbc.core.RowCallbackHandler)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: void query(java.lang.String,java.lang.Object[],org.springframework.jdbc.core.RowCallbackHandler)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: void query(java.lang.String,org.springframework.jdbc.core.RowCallbackHandler,java.lang.Object[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List query(java.lang.String,org.springframework.jdbc.core.PreparedStatementSetter,org.springframework.jdbc.core.RowMapper)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List query(java.lang.String,java.lang.Object[],int[],org.springframework.jdbc.core.RowMapper)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List query(java.lang.String,java.lang.Object[],org.springframework.jdbc.core.RowMapper)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List query(java.lang.String,org.springframework.jdbc.core.RowMapper,java.lang.Object[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.Map queryForMap(java.lang.String)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.Map queryForMap(java.lang.String,java.lang.Object[],int[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.Map queryForMap(java.lang.String,java.lang.Object[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object queryForObject(java.lang.String,org.springframework.jdbc.core.RowMapper)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object queryForObject(java.lang.String,java.lang.Class)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object queryForObject(java.lang.String,java.lang.Object[],int[],org.springframework.jdbc.core.RowMapper)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object queryForObject(java.lang.String,java.lang.Object[],org.springframework.jdbc.core.RowMapper)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object queryForObject(java.lang.String,org.springframework.jdbc.core.RowMapper,java.lang.Object[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object queryForObject(java.lang.String,java.lang.Object[],int[],java.lang.Class)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object queryForObject(java.lang.String,java.lang.Object[],java.lang.Class)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.lang.Object queryForObject(java.lang.String,java.lang.Class,java.lang.Object[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List queryForList(java.lang.String,java.lang.Class)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List queryForList(java.lang.String)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List queryForList(java.lang.String,java.lang.Object[],int[],java.lang.Class)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List queryForList(java.lang.String,java.lang.Object[],java.lang.Class)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List queryForList(java.lang.String,java.lang.Class,java.lang.Object[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List queryForList(java.lang.String,java.lang.Object[],int[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: java.util.List queryForList(java.lang.String,java.lang.Object[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: org.springframework.jdbc.support.rowset.SqlRowSet queryForRowSet(java.lang.String)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: org.springframework.jdbc.support.rowset.SqlRowSet queryForRowSet(java.lang.String,java.lang.Object[],int[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: org.springframework.jdbc.support.rowset.SqlRowSet queryForRowSet(java.lang.String,java.lang.Object[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: int update(java.lang.String)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: int update(java.lang.String,org.springframework.jdbc.core.PreparedStatementSetter)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: int update(java.lang.String,java.lang.Object[],int[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: int update(java.lang.String,java.lang.Object[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: int[] batchUpdate(java.lang.String[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: int[] batchUpdate(java.lang.String,org.springframework.jdbc.core.BatchPreparedStatementSetter)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: int[] batchUpdate(java.lang.String,java.util.List)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: int[] batchUpdate(java.lang.String,java.util.List,int[])>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<org.springframework.jdbc.core.JdbcTemplate: int[] batchUpdate(java.lang.String,java.util.Collection,int,org.springframework.jdbc.core.ParameterizedPreparedStatementSetter)>", "index": 0, "vul_id": "JdbcTemplateSQLInjectVulnerability"}
+  - {"method": "<cn.hutool.core.io.FileUtil: java.io.File writeBytes(byte[],java.lang.String)>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<cn.hutool.core.io.FileUtil: java.io.File writeBytes(byte[],java.lang.String)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<cn.hutool.core.io.FileUtil: java.io.File writeBytes(byte[],java.io.File)>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<cn.hutool.core.io.FileUtil: java.io.File writeBytes(byte[],java.io.File,int,int,boolean)>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<org.apache.commons.io.FileUtils: void copyInputStreamToFile(java.io.InputStream,java.io.File)>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<cn.hutool.http.HttpUtil: long downloadFile(java.lang.String,java.lang.String)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.apache.commons.io.FileUtils: void copyURLToFile(java.net.URL,java.io.File)>", "index": 0, "vul_id": "SSRFVulnerability"}
+  - {"method": "<org.apache.commons.io.FileUtils: void copyURLToFile(java.net.URL,java.io.File)>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<com.aliyun.oss.OSSClient: com.aliyun.oss.model.PutObjectResult putObject(java.lang.String,java.lang.String,java.io.InputStream)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<com.aliyun.oss.OSSClient: com.aliyun.oss.model.PutObjectResult putObject(java.lang.String,java.lang.String,java.io.InputStream)>", "index": 1, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<com.aliyun.oss.OSSClient: com.aliyun.oss.model.PutObjectResult putObject(java.lang.String,java.lang.String,java.io.InputStream)>", "index": 2, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<com.github.tobato.fastdfs.service.FastFileStorageClient: com.github.tobato.fastdfs.domain.fdfs.StorePath uploadFile(java.io.InputStream,long,java.lang.String,java.util.Set)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<com.github.tobato.fastdfs.service.FastFileStorageClient: com.github.tobato.fastdfs.domain.fdfs.StorePath uploadFile(java.io.InputStream,long,java.lang.String,java.util.Set)>", "index": 2, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<com.amazonaws.services.s3.AmazonS3: com.amazonaws.services.s3.model.PutObjectResult putObject(com.amazonaws.services.s3.model.PutObjectRequest)>", "index": 0, "vul_id": "FileWriteVulnerability"}
+  - {"method": "<org.influxdb.InfluxDB: org.influxdb.dto.QueryResult query(org.influxdb.dto.Query,java.util.concurrent.TimeUnit)>", "index": 0, "vul_id": "JdbcSQLInjectVulnerability"}
+
+
+sanitizers:
+#  - { kind: param, method: "<cn.hutool.core.io.FileReader: byte[] readBytes(java.lang.String)>", index: 0 }
+
+transfers:
+  - { "method": "<java.util.Map: java.util.Set entrySet()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Collection: java.util.stream.Stream stream()>",  "from": "base", "to": "result" }
+  - { "method": "<java.util.stream.Stream: java.util.stream.Stream filter(java.util.function.Predicate)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.stream.Stream: java.lang.Object collect(java.util.stream.Collector)>", "from": "base", "to": "result" }
+  - { "method": "<org.springframework.cloud.dataflow.server.service.impl.AppDeploymentRequestCreator: java.util.List createRequests(org.springframework.cloud.dataflow.core.StreamDefinition,java.util.Map,java.lang.String)>", "from": "1", "to": "result"}
+  - { "method": "<org.springframework.http.HttpEntity: void <init>(java.lang.Object)>", "from": "0", "to": "base"}
+  - { "method": "<org.influxdb.dto.Query: void <init>(java.lang.String,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<top.tangyh.basic.base.request.PageParams: java.lang.Object getModel()>", "from":"base", "to": "result" }
+  - { "method": "<top.tangyh.lamp.base.vo.query.user.BaseEmployeePageQuery: java.lang.String getRoleId()>", "from": "base", "to": "result" }
+  - { "method": "<top.tangyh.lamp.authority.dto.auth.UserPageQuery: java.lang.String getRoleId()>", "from": "base", "to": "result" }
+  - { "method": "<com.baomidou.mybatisplus.core.conditions.interfaces.Func: java.lang.Object inSql(java.lang.Object,java.lang.String)>", "from": "1", "to": "base" }
+  - { "method": "<com.baomidou.mybatisplus.core.conditions.interfaces.Func: java.lang.Object notInSql(java.lang.Object,java.lang.String)>", "from": "1", "to": "base" }
+  - { "method": "<org.springframework.cloud.skipper.domain.UploadRequest: void setName(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.springframework.cloud.skipper.domain.UploadRequest: byte[] getPackageFileAsBytes()>", "from": "base", "to": "result" }
+  - { "method": "<com.sitewhere.grpc.service.GGetDeviceEventByAlternateIdRequest$Builder: com.sitewhere.grpc.service.GGetDeviceEventByAlternateIdRequest$Builder setAlternateId(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.sitewhere.grpc.service.GGetDeviceEventByAlternateIdRequest$Builder: com.sitewhere.grpc.service.GGetDeviceEventByAlternateIdRequest build()>", "from": "base", "to": "result" }
+  - { "method": "<com.sitewhere.grpc.service.GGetDeviceEventByAlternateIdRequest: java.lang.String getAlternateId()>", "from": "base", "to": "result" }
+  - { "method": "<com.amazonaws.services.s3.model.PutObjectRequest: void <init>(java.lang.String,java.lang.String,java.io.InputStream,com.amazonaws.services.s3.model.ObjectMetadata)>", "from": "1", "to": "base" }
+  - { "method": "<cn.hutool.core.io.FileTypeUtil: java.lang.String getType(java.io.File)>", "from": "0", "to": "result" }
+  - { "method": "<com.google.gson.Gson: java.lang.Object fromJson(java.lang.String,java.lang.reflect.Type)>", "from": "0", "to": "result" }
+  - { "method": "<javax.crypto.Cipher: byte[] doFinal(byte[])>", "from": "0", "to": "result" }
+  - { "method": "<org.bouncycastle.util.encoders.Base64: byte[] decode(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.http.HttpHost: org.apache.http.HttpHost create(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.http.HttpHost: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.HttpHost: void <init>(java.lang.String,int)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.HttpHost: void <init>(java.lang.String,int,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.HttpHost: void <init>(java.net.InetAddress,int,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.HttpHost: void <init>(java.net.InetAddress,java.lang.String,int,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.HttpHost: void <init>(java.net.InetAddress,int)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.HttpHost: void <init>(java.net.InetAddress)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.HttpHost: void <init>(org.apache.http.HttpHost)>", "from": "0", "to": "base" }
+  - { "method": "<org.jsoup.Jsoup: org.jsoup.Connection connect(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.commons.httpclient.methods.GetMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.commons.httpclient.methods.PostMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.commons.httpclient.methods.PutMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.commons.httpclient.methods.DeleteMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.commons.httpclient.methods.HeadMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.commons.httpclient.methods.OptionsMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.commons.httpclient.methods.TraceMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpTrace: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpTrace: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpHead: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpHead: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpOptions: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpOptions: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpPatch: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpPatch: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpDelete: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpDelete: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpPut: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpPut: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpPost: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpPost: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpGet: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpGet: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.squareup.okhttp.Request$Builder: com.squareup.okhttp.Request$Builder url(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<com.squareup.okhttp.Request$Builder: com.squareup.okhttp.Request build()>", "from": "base", "to": "result" }
+  - { "method": "<com.squareup.okhttp.OkHttpClient: com.squareup.okhttp.Call newCall(com.squareup.okhttp.Request)>", "from": "0", "to": "result" }
+  - { "method": "<javax.servlet.http.Cookie: java.lang.String getValue()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Base64$Decoder: byte[] decode(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.logging.log4j.message.ReusableMessageFactory: org.apache.logging.log4j.message.Message newMessage(java.lang.String)>", "from": "0", "to": "result", "type": "org.apache.logging.log4j.message.ReusableSimpleMessage" }
+  - { "method": "<org.apache.logging.log4j.core.impl.ReusableLogEventFactory: org.apache.logging.log4j.core.LogEvent createEvent(java.lang.String,org.apache.logging.log4j.Marker,java.lang.String,org.apache.logging.log4j.Level,org.apache.logging.log4j.message.Message,java.util.List,java.lang.Throwable)>", "from": "4", "to": "result", "type": "org.apache.logging.log4j.core.impl.MutableLogEvent" }
+  - { "method": "<org.apache.logging.log4j.core.impl.MutableLogEvent: void formatTo(java.lang.StringBuilder)>", "from": "base", "to": "0" }
+  - { "method": "<java.lang.StringBuilder: void getChars(int,int,char[],int)>", "from": "base", "to": "2" }
+  - { "method": "<java.lang.String: void <init>(char[],int,int)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: void <init>(byte[],java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.StringBuffer)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.StringBuffer)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.StringBuffer)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.ObjectOutputStream: void <init>(java.io.OutputStream)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.FileInputStream: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Scanner: void <init>(java.nio.file.Path,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>", "from": "0", "to": "result" }
+  - { "method": "<java.nio.file.Paths: java.nio.file.Path get(java.lang.String,java.lang.String[])>", "from": "1", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.JsonNode readTree(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(byte[],int,int,com.fasterxml.jackson.core.type.TypeReference)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.Scanner: java.lang.String next()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Scanner: java.lang.String next(java.util.regex.Pattern)>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(com.fasterxml.jackson.core.JsonParser,com.fasterxml.jackson.databind.JavaType)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String join(java.lang.CharSequence,java.lang.Iterable)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String join(java.lang.CharSequence,java.lang.Iterable)>", "from": "1", "to": "result" }
+  - { "method": "<java.nio.file.Files: java.io.InputStream newInputStream(java.nio.file.Path,java.nio.file.OpenOption[])>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.commons.httpclient.methods.GetMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.OutputStreamWriter: void <init>(java.io.OutputStream,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.ObjectInputStream: int readInt()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String[] split(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<org.apache.http.client.methods.HttpPost: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(com.fasterxml.jackson.core.JsonParser,java.lang.Class)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.LinkedList: void <init>(java.util.Collection)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonParser createParser(java.io.InputStream)>", "from": "0", "to": "result" }
+  - { "method": "<java.beans.XMLDecoder: void <init>(java.io.InputStream,java.lang.Object,java.beans.ExceptionListener,java.lang.ClassLoader)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashSet: java.lang.Object[] toArray(java.lang.Object[])>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.lang.String,java.lang.Class)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.TreeSet: boolean addAll(java.util.Collection)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.FileOutputStream: void <init>(java.lang.String,boolean)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: java.lang.String copyValueOf(char[])>", "from": "0", "to": "result" }
+  - { "method": "<java.beans.XMLDecoder: void <init>(java.io.InputStream,java.lang.Object,java.beans.ExceptionListener)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Scanner: void <init>(java.io.InputStream)>", "from": "0", "to": "base" }
+  - { "method": "<org.springframework.web.multipart.MultipartFile: byte[] getBytes()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.CharSequence)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.CharSequence)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.CharSequence)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.Properties: java.lang.Object setProperty(java.lang.String,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpOptions: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.OutputStreamWriter: void <init>(java.io.OutputStream)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Scanner: void <init>(java.io.File,java.nio.charset.CharsetDecoder)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.commons.httpclient.methods.PostMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.MappingIterator readValues(com.fasterxml.jackson.core.JsonParser,com.fasterxml.jackson.core.type.TypeReference)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.TreeSet: void <init>(java.util.Collection)>", "from": "0", "to": "base" }
+  - { "method": "<com.tangosol.io.pof.PofReader: int readInt()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Scanner: void <init>(java.lang.Readable,java.util.regex.Pattern)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.ArrayList: java.lang.Object get(int)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.List: boolean add(java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.FileWriter: void <init>(java.io.FileDescriptor)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuffer: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.Object: java.lang.String toString()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.HashSet: java.util.Iterator iterator()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.HashSet: java.lang.Object[] toArray(java.lang.Object[])>", "from": "base", "to": "result" }
+  - { "method": "<java.io.BufferedWriter: void <init>(java.io.Writer,int)>", "from": "0", "to": "base" }
+  - { "method": "<java.beans.XMLDecoder: void <init>(java.io.InputStream,java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.File: void <init>(java.lang.String,java.io.File)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.File: void <init>(java.lang.String,java.io.File)>", "from": "1", "to": "base" }
+  - { "method": "<org.xml.sax.InputSource: void <init>(java.io.InputStream)>", "from": "0", "to": "base" }
+  - { "method": "<org.xml.sax.InputSource: void <init>(java.io.Reader)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.MappingIterator readValues(com.fasterxml.jackson.core.JsonParser,java.lang.Class)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.CharSequence subSequence(int,int)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>", "from": "1", "to": "result" }
+  - { "method": "<java.util.Scanner: void <init>(java.io.File,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonParser createParser(java.io.DataInput)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.Set: java.lang.Object[] toArray(java.lang.Object[])>", "from": "base", "to": "result" }
+  - { "method": "<java.util.HashSet: void <init>(java.util.Collection)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.commons.httpclient.methods.HeadMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Set: boolean addAll(java.util.Collection)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: byte[] getBytes(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>", "from": "0", "to": "result" }
+  - { "method": "<java.util.HashSet: boolean addAll(java.util.Collection)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.FileWriter: void <init>(java.lang.String,boolean)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.BufferedOutputStream: void <init>(java.io.OutputStream)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.net.URL,com.fasterxml.jackson.core.type.TypeReference)>", "from": "0", "to": "result" }
+  - { "method": "<java.beans.XMLDecoder: void <init>(org.xml.sax.InputSource)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.FileOutputStream: void <init>(java.io.FileDescriptor)>", "from": "0", "to": "base" }
+  - { "method": "<groovy.lang.GroovyCodeSource: void <init>(java.io.File,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Map: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "1", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(com.fasterxml.jackson.core.JsonParser,com.fasterxml.jackson.core.type.ResolvedType)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.Map: void putAll(java.util.Map)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: java.lang.String valueOf(char[])>", "from": "0", "to": "result" }
+  - { "method": "<java.util.HashMap: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.HashMap: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.HashMap: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.HashMap: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "1", "to": "result" }
+  - { "method": "<java.util.HashSet: boolean add(java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.TreeSet: boolean add(java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.JsonNode readTree(java.io.File)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.OutputStream: void write(byte[])>", "from": "0", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonParser createParser(byte[],int,int)>", "from": "0", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(byte[],int,int,java.lang.Class)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.Scanner: void <init>(java.io.InputStream,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.io.InputStream,com.fasterxml.jackson.core.type.TypeReference)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.ByteArrayInputStream: void <init>(byte[])>", "from": "0", "to": "base" }
+  - { "method": "<java.net.URL: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashMap: void putAll(java.util.Map)>", "from": "0", "to": "base" }
+  - { "method": "<java.beans.XMLDecoder: void <init>(java.io.InputStream)>", "from": "0", "to": "base" }
+  - { "method": "<groovy.lang.GroovyCodeSource: void <init>(java.io.Reader,java.lang.String,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<groovy.lang.GroovyCodeSource: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashSet: java.util.Iterator iterator()>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonParser createParser(java.io.Reader)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.http.client.methods.HttpPut: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.FileOutputStream: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.BufferedOutputStream: void <init>(java.io.OutputStream,int)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Iterator: java.lang.Object next()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.http.client.methods.HttpHead: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.BufferedInputStream: void <init>(java.io.InputStream)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Scanner: void <init>(java.io.File)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.ArrayList: void <init>(java.util.Collection)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpPut: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.FileWriter: void <init>(java.io.File,boolean)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Set: java.lang.Object[] toArray()>", "from": "base", "to": "result" }
+  - { "method": "<org.apache.commons.httpclient.methods.PutMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: java.lang.String replaceFirst(java.lang.String,java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String replaceFirst(java.lang.String,java.lang.String)>", "from": "1", "to": "result" }
+  - { "method": "<java.io.OutputStreamWriter: void <init>(java.io.OutputStream,java.nio.charset.CharsetEncoder)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.JsonNode readTree(java.net.URL)>", "from": "0", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(byte[],java.lang.Class)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.commons.httpclient.methods.TraceMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.HashSet: java.util.Spliterator spliterator()>", "from": "base", "to": "result" }
+  - { "method": "<java.io.BufferedInputStream: void <init>(java.io.InputStream,int)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(byte[],com.fasterxml.jackson.core.type.TypeReference)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.LinkedList: java.util.Iterator iterator()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String substring(int,int)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String toLowerCase(java.util.Locale)>", "from": "base", "to": "result" }
+  - { "method": "<java.io.InputStreamReader: void <init>(java.io.InputStream)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "1", "to": "result" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "1", "to": "result" }
+  - { "method": "<java.util.HashMap: java.lang.Object get(java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Set: java.util.Iterator iterator()>", "from": "base", "to": "result" }
+  - { "method": "<java.io.File: void <init>(java.lang.String,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.File: void <init>(java.lang.String,java.lang.String)>", "from": "1", "to": "base" }
+  - { "method": "<java.io.InputStreamReader: void <init>(java.io.InputStream,java.nio.charset.Charset)>", "from": "0", "to": "base" }
+  - { "method": "<java.beans.XMLDecoder: void <init>(org.xml.sax.InputSource,java.lang.Object,java.beans.ExceptionListener,java.lang.ClassLoader)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: java.lang.String trim()>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(byte[],com.fasterxml.jackson.databind.JavaType)>", "from": "0", "to": "result" }
+  - { "method": "<groovy.lang.GroovyCodeSource: void <init>(java.lang.String,java.lang.String,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.FileWriter: void <init>(java.io.File)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.InputStreamReader: void <init>(java.io.InputStream,java.nio.charset.CharsetDecoder)>", "from": "0", "to": "base" }
+  - { "method": "<javax.xml.transform.sax.SAXSource: void <init>(org.xml.sax.InputSource)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpPatch: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Properties: void load(java.io.Reader)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Properties: void <init>(java.util.Properties)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpPost: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Set: boolean add(java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashSet: java.lang.Object[] toArray()>", "from": "base", "to": "result" }
+  - { "method": "<java.io.FileOutputStream: void <init>(java.io.File)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashSet: void <init>(java.util.Collection)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Scanner: void <init>(java.nio.file.Path,java.nio.charset.Charset)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Scanner: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.CharSequence,int,int)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.CharSequence,int,int)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.CharSequence,int,int)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.FileReader: void <init>(java.io.File)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.ByteArrayOutputStream: void write(byte[],int,int)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashSet: boolean addAll(java.util.Collection)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.OutputStreamWriter: void <init>(java.io.OutputStream,java.nio.charset.Charset)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpDelete: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.ArrayList: java.util.Iterator iterator()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Scanner: void <init>(java.lang.Readable)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: byte[] getBytes()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String join(java.lang.CharSequence,java.lang.CharSequence[])>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String join(java.lang.CharSequence,java.lang.CharSequence[])>", "from": "1", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String copyValueOf(char[],int,int)>", "from": "0", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.io.DataInput,com.fasterxml.jackson.databind.JavaType)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.http.client.methods.HttpTrace: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.nio.file.Paths: java.nio.file.Path get(java.net.URI)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.File: void <init>(java.lang.String,int)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpPatch: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuilder: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.List: java.lang.Object get(int)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.HashMap: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.HashMap: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.HashMap: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.HashMap: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "1", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.core.TreeNode readTree(com.fasterxml.jackson.core.JsonParser)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.TreeSet: java.lang.Object[] toArray()>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.lang.String,com.fasterxml.jackson.core.type.TypeReference)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.http.client.methods.HttpGet: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Map: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "1", "to": "result" }
+  - { "method": "<java.io.FileReader: void <init>(java.io.FileDescriptor)>", "from": "0", "to": "base" }
+  - { "method": "<java.net.URI: void <init>(java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.net.URI: java.net.URI create(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<java.net.URI: java.net.URL toURL()>", "from": "base", "to": "result" }
+  - { "method": "<java.nio.channels.FileChannel: java.nio.channels.FileChannel open(java.nio.file.Path,java.util.Set,java.nio.file.attribute.FileAttribute[])>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.StringBuffer: java.lang.String toString()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String intern()>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.io.Reader,java.lang.Class)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.poi.xssf.usermodel.XSSFWorkbook: java.util.Collection getCustomXMLMappings()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Field[] getDeclaredFields()>", "from": "base", "to": "result" }
+  - { "method": "<java.io.ObjectInput: int read()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.CharSequence,int,int)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.CharSequence,int,int)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.CharSequence,int,int)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>", "from": "1", "to": "result" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "1", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String replace(char,char)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.HashMap: void putAll(java.util.Map)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpGet: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.StringBuffer)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.StringBuffer)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.StringBuffer)>", "from": "0", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonParser createParser(byte[])>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.commons.httpclient.methods.DeleteMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.net.URI: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.MappingIterator readValues(com.fasterxml.jackson.core.JsonParser,com.fasterxml.jackson.core.type.ResolvedType)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.HashSet: java.lang.Object[] toArray()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.List: java.util.Iterator iterator()>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.JsonNode readTree(byte[])>", "from": "0", "to": "result" }
+  - { "method": "<java.io.ObjectInputStream: void <init>(java.io.InputStream)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.ObjectInput: int readInt()>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(com.fasterxml.jackson.core.JsonParser,com.fasterxml.jackson.core.type.TypeReference)>", "from": "0", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonParser createParser(java.net.URL)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String toString()>", "from": "base", "to": "result" }
+  - { "method": "<java.io.OutputStream: void write(int)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Method[] getMethods()>", "from": "base", "to": "result" }
+  - { "method": "<java.nio.channels.FileChannel: java.nio.channels.FileChannel open(java.nio.file.Path,java.nio.file.OpenOption[])>", "from": "0", "to": "result" }
+  - { "method": "<java.util.Scanner: java.lang.String nextLine()>", "from": "base", "to": "result" }
+  - { "method": "<java.io.FileReader: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.FileOutputStream: void <init>(java.io.File,boolean)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.io.DataInput,java.lang.Class)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.LinkedHashSet: boolean add(java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Set: java.util.Spliterator spliterator()>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(byte[],int,int,com.fasterxml.jackson.databind.JavaType)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.FileInputStream: void <init>(java.io.FileDescriptor)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.ObjectInput: java.lang.Object readObject()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: void getBytes(int,int,byte[],int)>", "from": "base", "to": "result" }
+  - { "method": "<java.io.InputStreamReader: void <init>(java.io.InputStream,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.commons.httpclient.methods.OptionsMethod: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.regex.Matcher: java.lang.String replaceAll(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.regex.Matcher: java.lang.String replaceAll(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String valueOf(char[],int,int)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.TreeSet: java.lang.Object[] toArray(java.lang.Object[])>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "1", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.io.Reader,com.fasterxml.jackson.databind.JavaType)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String[] split(java.lang.String,int)>", "from": "base", "to": "result" }
+  - { "method": "<java.io.ObjectInputStream: java.lang.Object readObject()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.CharSequence)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.CharSequence)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.CharSequence)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.FileWriter: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.io.Reader,com.fasterxml.jackson.core.type.TypeReference)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String substring(int)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Map: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Map: java.lang.Object computeIfAbsent(java.lang.Object,java.util.function.Function)>", "from": "1", "to": "result" }
+  - { "method": "<java.util.Properties: void load(java.io.InputStream)>", "from": "0", "to": "base" }
+  - { "method": "<org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback: void <init>(org.springframework.jdbc.core.JdbcTemplate,java.lang.String,org.springframework.jdbc.core.ResultSetExtractor)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.TreeSet: java.util.Spliterator spliterator()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: byte[] getBytes(java.nio.charset.Charset)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuffer: void <init>(java.lang.CharSequence)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonParser createParser(char[],int,int)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonParser createParser(char[])>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.LinkedList: java.lang.Object get(int)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Collection: java.util.Iterator iterator()>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Field getField(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Field getField(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<org.xml.sax.InputSource: void <init>(java.io.Reader)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.Class: java.lang.reflect.Field[] getFields()>", "from": "base", "to": "result" }
+  - { "method": "<java.io.ByteArrayInputStream: void <init>(byte[],int,int)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: java.lang.String toLowerCase()>", "from": "base", "to": "result" }
+  - { "method": "<java.io.File: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<org.apache.http.client.methods.HttpOptions: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.nio.file.Files: java.io.BufferedReader newBufferedReader(java.nio.file.Path)>", "from": "0", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.io.InputStream,java.lang.Class)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.StringBuilder: void <init>(java.lang.CharSequence)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object get(java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<org.apache.http.client.methods.HttpHead: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Map: java.lang.Object get(java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object putIfAbsent(java.lang.Object,java.lang.Object)>", "from": "1", "to": "result" }
+  - { "method": "<java.util.Scanner: java.lang.String next(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.LinkedHashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>", "from": "1", "to": "result" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.StringBuilder: java.lang.String toString()>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.MappingIterator readValues(com.fasterxml.jackson.core.JsonParser,com.fasterxml.jackson.databind.JavaType)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.LinkedHashSet: java.util.Spliterator spliterator()>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.net.URL,java.lang.Class)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.http.client.methods.HttpTrace: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Scanner: void <init>(java.nio.channels.ReadableByteChannel,java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.lang.String,com.fasterxml.jackson.databind.JavaType)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.Object: java.lang.Class getClass()>", "from": "base", "to": "result" }
+  - { "method": "<java.io.BufferedWriter: void <init>(java.io.Writer)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.HashMap: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.HashMap: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "1", "to": "base" }
+  - { "method": "<java.util.HashMap: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.HashMap: java.lang.Object computeIfPresent(java.lang.Object,java.util.function.BiFunction)>", "from": "1", "to": "result" }
+  - { "method": "<java.net.URLConnection: void <init>(java.net.URL)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Scanner: void <init>(java.nio.file.Path)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.FileDescriptor: void <init>(int)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: char charAt(int)>", "from": "base", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.JsonNode readTree(byte[],int,int)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.String: char[] toCharArray()>", "from": "base", "to": "result" }
+  - { "method": "<groovy.lang.GroovyCodeSource: void <init>(java.io.File)>", "from": "0", "to": "base" }
+  - { "method": "<jdk.nashorn.api.scripting.NashornScriptEngine: javax.script.CompiledScript compile(java.io.Reader)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.DataInput: int readInt()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Scanner: void <init>(java.nio.channels.ReadableByteChannel)>", "from": "0", "to": "base" }
+  - { "method": "<java.util.Scanner: java.util.Scanner useDelimiter(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Scanner: java.util.Scanner useDelimiter(java.util.regex.Pattern)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Scanner: java.util.Scanner skip(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Scanner: java.util.Scanner skip(java.util.regex.Pattern)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Scanner: java.util.Scanner useRadix(int)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Scanner: java.util.Scanner useLocale(java.util.Locale)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String toUpperCase()>", "from": "base", "to": "result" }
+  - { "method": "<java.io.File: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.net.URL,com.fasterxml.jackson.databind.JavaType)>", "from": "0", "to": "result" }
+  - { "method": "<java.nio.file.Files: java.io.BufferedReader newBufferedReader(java.nio.file.Path,java.nio.charset.Charset)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.InputStream: int read()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.LinkedHashMap: void <init>(java.util.Map)>", "from": "0", "to": "base" }
+  - { "method": "<org.springframework.web.multipart.MultipartFile: java.io.InputStream getInputStream()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.Arrays: java.util.List asList(java.lang.Object[])>", "from": "0", "to": "result" }
+  - { "method": "<java.io.BufferedReader: void <init>(java.io.Reader,int)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.OutputStream: void write(byte[],int,int)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.poi.xssf.usermodel.XSSFWorkbook: void <init>(java.io.InputStream)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: java.lang.String valueOf(java.lang.Object)>", "from": "0", "to": "result" }
+  - { "method": "<java.lang.Class: java.lang.Class forName(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<groovy.lang.GroovyCodeSource: void <init>(java.net.URL)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: java.lang.String toUpperCase(java.util.Locale)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.TreeSet: java.util.Iterator iterator()>", "from": "base", "to": "result" }
+  - { "method": "<java.util.regex.Matcher: java.lang.String replaceFirst(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.util.regex.Matcher: java.lang.String replaceFirst(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<org.apache.http.client.methods.HttpDelete: void <init>(java.net.URI)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: java.lang.Object readValue(java.io.InputStream,com.fasterxml.jackson.databind.JavaType)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.StringReader: void <init>(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.JsonNode readTree(java.io.Reader)>", "from": "0", "to": "result" }
+  - { "method": "<java.util.HashMap: void <init>(java.util.Map)>", "from": "0", "to": "base" }
+  - { "method": "<javax.xml.transform.sax.SAXSource: void <init>(org.xml.sax.XMLReader,org.xml.sax.InputSource)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.BufferedReader: void <init>(java.io.Reader)>", "from": "0", "to": "base" }
+  - { "method": "<java.lang.String: java.lang.String concat(java.lang.String)>", "from": "base", "to": "result" }
+  - { "method": "<java.lang.String: java.lang.String concat(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<com.fasterxml.jackson.core.JsonFactory: com.fasterxml.jackson.core.JsonParser createParser(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<jdk.nashorn.api.scripting.NashornScriptEngine: javax.script.CompiledScript compile(java.lang.String)>", "from": "0", "to": "result" }
+  - { "method": "<java.io.FileInputStream: void <init>(java.io.File)>", "from": "0", "to": "base" }
+  - { "method": "<java.io.ByteArrayOutputStream: void write(int)>", "from": "0", "to": "base" }
+  - { "method": "<com.fasterxml.jackson.databind.ObjectMapper: com.fasterxml.jackson.databind.JsonNode readTree(java.io.InputStream)>", "from": "0", "to": "result" }
+  - { "method": "<org.springblade.core.mp.support.Condition: com.baomidou.mybatisplus.core.conditions.query.QueryWrapper getQueryWrapper(java.util.Map,java.util.Map,java.lang.Class)>", "from": "0", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: int getJobGroup()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getJobDesc()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getAuthor()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getAlarmEmail()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getScheduleType()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getScheduleConf()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getMisfireStrategy()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getExecutorRouteStrategy()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getExecutorHandler()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getExecutorParam()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getExecutorBlockStrategy()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: int getExecutorTimeout()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: int getExecutorFailRetryCount()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: java.lang.String getChildJobId()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: long getTriggerNextTime()>", "from": "base", "to": "result" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setJobGroup(int)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setJobDesc(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setAuthor(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setAlarmEmail(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setScheduleType(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setScheduleConf(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setMisfireStrategy(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setExecutorRouteStrategy(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setExecutorHandler(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setExecutorParam(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setExecutorBlockStrategy(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setExecutorTimeout(int)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setExecutorFailRetryCount(int)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setChildJobId(java.lang.String)>", "from": "0", "to": "base" }
+  - { "method": "<com.xxl.job.admin.core.model.XxlJobInfo: void setTriggerNextTime(long)>", "from": "0", "to": "base" }
+  - { "method": "<org.springframework.web.multipart.MultipartFile: java.lang.String getOriginalFilename()>", "from": "base", "to": "result" }
+  - { "method": "<cn.hutool.core.io.IoUtil: byte[] readBytes(java.io.InputStream)>", "from": "0", "to": "result" }
+  - { "method": "<cn.hutool.core.io.FileUtil: byte[] readBytes(java.io.File)>", "from": "0", "to": "result"}
+
+vul_info:
+  - { "vul_id": "FileReadVulnerability", "description": "A controllable and dangerous file read method is detected. The method in a user-controllable scenario can cause arbitrary file reads!" }
+  - { "vul_id": "FileWriteVulnerability", "description": "A controllable and dangerous file write method is detected. The method in a user-controllable scenario can lead to arbitrary file writes!" }
+  - { "vul_id": "VelocitySSTIVulnerability", "description": "A dangerous controllable Velocity template 'evaluate' method call is detected. In a controllable scenario, it may cause SSTI template injection and remote code execution!" }
+  - { "vul_id": "URLOpenStreamVulnerability", "description": "A controllable dangerous java.net.URL method 'openStream' or 'getContent' call is detected. In a controllable scenario, it may be exploited for SSRF attacks, resulting in internal information leakage or unauthorized access!" }
+  - { "vul_id": "URLConnectionVulnerability", "description": "A controllable dangerous java.net.URLConnection method 'getInputStream' or 'getContent' call is detected. In a controllable scenario, it may be exploited for SSRF attacks, resulting in internal information leakage or unauthorized access!" }
+  - { "vul_id": "SSRFVulnerability", "description": "A controllable dangerous java.net.URLConnection method 'getInputStream' or 'getContent' call is detected. In a controllable scenario, it may be exploited for SSRF attacks, resulting in internal information leakage or unauthorized access!" }
+  - { "vul_id": "HttpClientVulnerability", "description": "A controllable dangerous HttpClient 'execute' method call is detected. In a controllable scenario, it may be exploited for SSRF attacks, resulting in internal information leakage or unauthorized access!" }
+  - { "vul_id": "HttpClientFluentVulnerability", "description": "A controllable dangerous HttpClient fluent method call is detected. In a controllable scenario, it may be exploited for SSRF attacks, resulting in internal information leakage or unauthorized access!" }
+  - { "vul_id": "HutoolHttpUtilDownloadVulnerability", "description": "A dangerous HttpUtil 'download' method call is detected. In a controllable scenario, it may be exploited for SSRF attacks, resulting in internal information leakage or unauthorized access!" }
+  - { "vul_id": "CommonsHttpClientVulnerability", "description": "A controllable dangerous HttpClient (Legacy version <=3.1) 'executeMethod' call is detected. In a controllable scenario, it may be exploited for SSRF attacks, resulting in internal information leakage or unauthorized access!" }
+  - { "vul_id": "JdomSAXReaderVulnerability", "description": "A controllable dangerous jdom SAXReader method call is detected. In a controllable scenario, it may lead to XXE attacks!" }
+  - { "vul_id": "SAXTransformerFactoryVulnerability", "description": "A controllable dangerous SAXTransformerFactory 'newXMLFilter' method call is detected. In a controllable scenario, it may lead to XXE attacks!" }
+  - { "vul_id": "GroovyVulnerability", "description": "A controllable dangerous groovy method call is detected. In a controllable scenario, it may lead to script injection and remote code execution!" }
+  - { "vul_id": "JdbcSQLInjectVulnerability", "description": "A controllable JDBC SQL injection is detected. In a controllable scenario, it may be subject to SQL injection attacks, resulting in data leaks!" }
+  - { "vul_id": "JdbcTemplateSQLInjectVulnerability", "description": "A controllable JdbcTemplate SQL injection is detected. In a controllable scenario, it may be subject to SQL injection attacks, resulting in data leaks!" }
+  - { "vul_id": "MybatisSQLInjectVulnerability", "description": "A controllable Mybatis SQL injection is detected. In a controllable scenario, it may be subject to SQL injection attacks, resulting in data leaks!" }
+  - { "vul_id": "CommonIOCopyURLToFile", "description": "A controllable 'copyURLToFile' method call for a URL is detected. In a controllable scenario, it may result in an SSRF attack." }
+  - { "vul_id": "SSRFVulnerability", "description": "A controllable URL method call is detected, which in a controllable scenario may result in an SSRF attack." }
+
