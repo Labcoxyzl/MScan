@@ -3,8 +3,19 @@
 ## Description
 The source code of _Detecting Taint-Style Vulnerabilities in Microservice-Structured Web Applications_.
 
+```
+@inproceedings{liu2025detecting,
+  title={Detecting Taint-Style Vulnerabilities in Microservice-Structured Web Applications},
+  author={Liu, Fengyu and Zhang, Yuan and Chen, Tian and Shi, Youkun and Yang, Guangliang and Lin, Zihan and Yang, Min and He, Junyao and Li, Qi},
+  booktitle={2025 IEEE Symposium on Security and Privacy (SP)},
+  pages={972--990},
+  year={2025},
+  organization={IEEE}
+}
+```
+
 ## Install
-First clone the project.
+First, clone the project.
 ```shell
 git clone ...
 ```
@@ -37,7 +48,7 @@ mv gateway_entry_scan/output/<your_project_name>.json src/main/resources/entry
 ```
 
 ## Step2. Analysis
-Before analysis, your should prepare two folder.
+Before analysis, you should prepare two folders.
 
 The first folder is the JAR folder of your target project, containing the packaged JAR files and dependencies for each microservice.
 
@@ -54,7 +65,7 @@ jars/
 ```
 The second folder is a temporary working directory for the analysis, typically located at `/tmp/<your_project_name>`.
 
-Then change analysis config in `src/main/java/Starter`.
+Then change the analysis config in `src/main/java/Starter`.
 ```java
 public class Starter {
     public static void main(String[] args) throws IOException {
