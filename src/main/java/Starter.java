@@ -26,6 +26,7 @@ public class Starter {
             Config.jarPath = "../../cloud/dataset/youlai-mall";
             Config.targetPath = "../../cloud/tmp/youlai-mall";
             Config.reuse = false;
+            Config.optionsFile = "src/main/resources/options.yaml";
             try {
                 parseJar(Config.jarPath);
                 GatewayParser.mapServiceRoute();
