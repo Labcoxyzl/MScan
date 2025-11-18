@@ -50,7 +50,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("pascal.taie.Main")
+    mainClass.set("Starter")
 }
 
 task("fatJar", type = Jar::class) {
