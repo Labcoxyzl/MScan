@@ -1,3 +1,13 @@
+### Fork Notes
+- Added `Config.java` at `/src/main/java/fdu/secsys/microservice/Config.java` (relevant [issue #1](https://github.com/LFYSec/MScan/issues/1))
+- Set default `Config.optionsFile` to `/src/main/resources/options.yaml` in `Starter.java`
+- Configured `Starter.java` as the main class in `build.gradle.kts`
+- Can be run directly without IDEA using `./gradlew run` (after setting config values in `Starter.java`)
+- Added `java-benchmarks` submodule (Tai-e [prerequisite](https://github.com/Labcoxyzl/MScan/blob/main/docs/en/command-line-options.adoc)), can be initialized using
+```shell
+git submodule update --init --recursive
+```
+
 # MScan
 
 ## Description
