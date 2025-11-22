@@ -51,6 +51,10 @@ dependencies {
 
 application {
     mainClass.set("Starter")
+    // Allow JVM args to be configured via command line: -PappJvmArgs="-Xmx24g"
+    applicationDefaultJvmArgs = (project.findProperty("appJvmArgs") as String?)
+        ?.split(" ")
+        ?: listOf()
 }
 
 task("fatJar", type = Jar::class) {
