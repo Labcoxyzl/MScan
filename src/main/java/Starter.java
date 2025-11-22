@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pascal.taie.Main;
 import pascal.taie.util.Timer;
+import picocli.CommandLine;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,15 +19,41 @@ public class Starter {
 
     private static final Logger logger = LogManager.getLogger(Starter.class);
 
-
     public static void main(String[] args) throws IOException {
+        // Parse command-line arguments
+        StarterOptions options = new StarterOptions();
+        CommandLine cmd = new CommandLine(options);
+
+        try {
+            cmd.parseArgs(args);
+        } catch (CommandLine.ParameterException e) {
+            cmd.getErr().println(e.getMessage());
+            cmd.usage(cmd.getErr());
+            System.exit(1);
+            return;
+        }
+
+        // Handle help request
+        if (cmd.isUsageHelpRequested()) {
+            cmd.usage(cmd.getOut());
+            System.exit(0);
+            return;
+        }
+
+        // Validate options
+        try {
+            options.validate();
+        } catch (IllegalArgumentException e) {
+            cmd.getErr().println("Validation error: " + e.getMessage());
+            System.exit(1);
+            return;
+        }
+
+        // Populate Config from parsed options
+        populateConfigFromOptions(options);
+
+        // Run analysis with timer
         Timer.runAndCount(() -> {
-            Config.name = "youlai-mall";
-            Config.classpathKeywords = new String[]{"youlai"};
-            Config.jarPath = "../../cloud/dataset/youlai-mall";
-            Config.targetPath = "../../cloud/tmp/youlai-mall";
-            Config.reuse = false;
-            Config.optionsFile = "src/main/resources/options.yaml";
             try {
                 parseJar(Config.jarPath);
                 GatewayParser.mapServiceRoute();
@@ -36,6 +63,27 @@ public class Starter {
                 e.printStackTrace();
             }
         }, Config.name);
+    }
+
+    /**
+     * Populate static Config fields from parsed CLI options
+     * Package-private for testing
+     */
+    static void populateConfigFromOptions(StarterOptions options) {
+        Config.name = options.getName();
+        Config.classpathKeywords = options.getClasspathKeywords();
+        Config.jarPath = options.getJarPath();
+        Config.targetPath = options.getTargetPath(); // includes default logic
+        Config.reuse = options.isReuse();
+        Config.optionsFile = options.getOptionsFile();
+
+        logger.info("Configuration loaded:");
+        logger.info("  Name: {}", Config.name);
+        logger.info("  Classpath Keywords: {}", String.join(", ", Config.classpathKeywords));
+        logger.info("  JAR Path: {}", Config.jarPath);
+        logger.info("  Target Path: {}", Config.targetPath);
+        logger.info("  Reuse: {}", Config.reuse);
+        logger.info("  Options File: {}", Config.optionsFile);
     }
 
     public static void parseJar(String jarDir) throws IOException {
@@ -80,5 +128,4 @@ public class Starter {
         }
         logger.info("[+] starter end");
     }
-
 }

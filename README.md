@@ -1,12 +1,41 @@
 ### Fork Notes
+[Patches]
 - Added `Config.java` at `/src/main/java/fdu/secsys/microservice/Config.java` (relevant [issue #1](https://github.com/LFYSec/MScan/issues/1))
 - Set default `Config.optionsFile` to `/src/main/resources/options.yaml` in `Starter.java`
 - Configured `Starter.java` as the main class in `build.gradle.kts`
-- Can be run directly without IDEA using `./gradlew run` (after setting config values in `Starter.java`)
-- Added `java-benchmarks` submodule (Tai-e [prerequisite](https://github.com/Labcoxyzl/MScan/blob/main/docs/en/command-line-options.adoc)), can be initialized using
-```shell
-git submodule update --init --recursive
-```
+- Added `java-benchmarks` submodule (Tai-e [prerequisite](https://github.com/Labcoxyzl/MScan/blob/main/docs/en/command-line-options.adoc)), can be initialized using:
+  ```shell
+  git submodule update --init --recursive
+  ```
+
+
+[Feature]
+- Can be run directly without IDEA using `./gradlew run` (after setting config values in `Starter.java` or through CLI arguments)
+- CLI argument support - Can now pass configuration via command-line arguments instead of modifying `Starter.java`:
+  ```shell
+  ./gradlew run --args="--name <project> --jar-path <path> [OPTIONS]"
+  ```
+  Available flags:
+  - `--name, -n` (required): Project name
+  - `--jar-path, -j` (required): Path to JAR directory
+  - `--classpath-keywords, -k`: Comma-separated package keywords (e.g., `com.example.,com.youlai.`)
+  - `--target-path, -t`: Target path for analysis output (default: `/tmp/<project-name>`)
+  - `--reuse, -r`: Reuse existing extracted files
+  - `--options-file, -o`: Path to Tai-e options file (default: `src/main/resources/options.yml`)
+  - `--help, -h`: Display help message
+
+  Example:
+  ```shell
+  ./gradlew run --args="--name youlai-mall --jar-path ./jars --classpath-keywords .youlai."
+  ```
+
+  **For large analyses**, increase JVM memory via CLI using `-PappJvmArgs`:
+  ```shell
+  ./gradlew run --args="--name youlai-mall --jar-path ./jars --classpath-keywords .youlai." \
+    -PappJvmArgs="-Xmx24g"
+  ```
+  Optionally add `-XX:MaxMetaspaceSize=2g` for projects with many classes. Adjust memory based on your hardware.
+
 
 # MScan
 
